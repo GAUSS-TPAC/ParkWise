@@ -1,12 +1,13 @@
 package com.kairos.backend_SmartParking.entities;
 
 import com.kairos.backend_SmartParking.enums.ModePaiement;
+import com.kairos.backend_SmartParking.enums.PaymentStatus;
 import jakarta.persistence.*;
 
 import java.util.UUID;
 
 @Entity
-public class Paiement {
+public class Payment {
 
     @Id
     @Column(name = "id", nullable = false, updatable = false)
@@ -19,13 +20,17 @@ public class Paiement {
     @Column(name = "mode_paiement", nullable = false)
     private ModePaiement modePaiement;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "payment_status")
+    private PaymentStatus paymentStatus;
+
     // Constructeur par défaut
-    public Paiement() {
+    public Payment() {
         this.id = UUID.randomUUID();
     }
 
     // Constructeur complet
-    public Paiement(String userId, ModePaiement modePaiement) {
+    public Payment(String userId, ModePaiement modePaiement) {
         this.id = UUID.randomUUID();
         this.userId = userId;
         this.modePaiement = modePaiement;
@@ -34,11 +39,6 @@ public class Paiement {
     // GETTERS & SETTERS
     public UUID getId() {
         return id;
-    }
-
-    // inutile de setter un UUID → on bloque
-    public void setId(UUID id) {
-        this.id = id;
     }
 
     public String getUserId() {
@@ -55,5 +55,13 @@ public class Paiement {
 
     public void setModePaiement(ModePaiement modePaiement) {
         this.modePaiement = modePaiement;
+    }
+
+    public PaymentStatus getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(PaymentStatus paymentStatus) {
+        this.paymentStatus = paymentStatus;
     }
 }
