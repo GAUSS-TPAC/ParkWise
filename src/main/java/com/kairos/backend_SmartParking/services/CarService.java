@@ -1,7 +1,7 @@
-package com.kairos.backend_SmartParking.service;
+package com.kairos.backend_SmartParking.services;
 
 import com.kairos.backend_SmartParking.entities.Cars;
-import com.kairos.backend_SmartParking.Repository.CarRepository;
+import com.kairos.backend_SmartParking.repositories.CarRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

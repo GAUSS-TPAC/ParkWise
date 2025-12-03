@@ -2,7 +2,7 @@ package com.smartparking.payment;
 
 import com.kairos.backend_SmartParking.entities.Payment;
 import com.kairos.backend_SmartParking.enums.PaymentStatus;
-import com.kairos.backend_SmartParking.service.PaymentService;
+import com.kairos.backend_SmartParking.services.PaymentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

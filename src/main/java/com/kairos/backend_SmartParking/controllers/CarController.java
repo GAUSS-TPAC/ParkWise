@@ -1,7 +1,7 @@
-package com.kairos.backend_SmartParking.controller;
+package com.kairos.backend_SmartParking.controllers;
 
 import com.kairos.backend_SmartParking.entities.Cars;
-import com.kairos.backend_SmartParking.service.CarService;
+import com.kairos.backend_SmartParking.services.CarService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

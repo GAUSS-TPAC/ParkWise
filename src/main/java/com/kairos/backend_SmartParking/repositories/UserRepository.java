@@ -1,4 +1,4 @@
-package com.kairos.backend_SmartParking.Repository;
+package com.kairos.backend_SmartParking.repositories;
 
 import com.kairos.backend_SmartParking.entities.Users;
 import org.springframework.data.jpa.repository.JpaRepository;

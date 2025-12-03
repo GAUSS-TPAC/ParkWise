@@ -1,6 +1,6 @@
-package com.kairos.backend_SmartParking.service;
+package com.kairos.backend_SmartParking.services;
 
-import com.kairos.backend_SmartParking.Repository.PaymentRepository;
+import com.kairos.backend_SmartParking.repositories.PaymentRepository;
 import com.kairos.backend_SmartParking.entities.Payment;
 import com.kairos.backend_SmartParking.enums.PaymentStatus;
 import lombok.RequiredArgsConstructor;
