@@ -1,14 +1,25 @@
 package com.kairos.backend_SmartParking.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-
+import jakarta.persistence.*;
+import lombok.*;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Users {
+
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @Column(nullable = false, unique = true)
     private String username;
-    private List<Long> cars_id;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Cars> cars = new ArrayList<>();
 }
