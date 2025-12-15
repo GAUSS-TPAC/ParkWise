@@ -2,6 +2,7 @@ package com.kairos.backend_SmartParking.controllers;
 
 import com.kairos.backend_SmartParking.entities.Users;
 import com.kairos.backend_SmartParking.services.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,5 +36,13 @@ public class UserController {
     @DeleteMapping("/{id}")
     public void delete(@PathVariable UUID id) {
         userService.delete(id);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Users> updateUser(
+            @PathVariable UUID id,
+            @RequestBody Users user
+    ) {
+        return ResponseEntity.ok(userService.updateUser(id, user));
     }
 }

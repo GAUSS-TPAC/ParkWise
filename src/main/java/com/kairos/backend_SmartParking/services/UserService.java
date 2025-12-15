@@ -35,4 +35,13 @@ public class UserService {
     public void delete(UUID id) {
         userRepository.deleteById(id);
     }
+
+    public Users updateUser(UUID id, Users data) {
+        Users user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        user.setUsername(data.getUsername());
+
+        return userRepository.save(user);
+    }
 }

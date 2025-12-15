@@ -76,4 +76,7 @@ public class ImageService {
 
         ImageIO.write(img, "jpg", file.toFile());
     }
+
+    public void processImage(ImageMessage msg) {
+    }
 }
