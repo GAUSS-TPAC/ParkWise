@@ -15,7 +15,7 @@ public class ImageUploadController {
 
     private static final String SECRET = "MY-API-KEY-123";
 
-    @PostMapping(value = "/upload", consumes = MediaType.IMAGE_JPEG_VALUE)
+    @PostMapping(value = "/upload", consumes = {MediaType.IMAGE_JPEG_VALUE, "image/png"})
     public ResponseEntity<String> uploadImage(
             @RequestBody byte[] imgBytes,
             @RequestParam("apikey") String apiKey) {
