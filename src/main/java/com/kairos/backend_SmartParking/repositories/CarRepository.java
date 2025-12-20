@@ -6,9 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
-public interface CarRepository extends JpaRepository<Cars, Long> {
-    Optional<Cars> findById(Long id);
+public interface CarRepository extends JpaRepository<Cars, UUID> {
+    Optional<Cars> findById(UUID id);
     List<Cars> findAll();
     List<Cars> findByUser(Users user);
 
