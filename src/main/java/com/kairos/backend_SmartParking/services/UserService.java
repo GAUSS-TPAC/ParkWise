@@ -48,7 +48,7 @@ public class UserService {
 
         List<CarResponse> cars = user.getCars()
                 .stream()
-                .map(car -> new CarResponse(car.getId(), car.getModele()))
+                .map(car -> new CarResponse(car.getId(), car.getModele(), user.getUsername()))
                 .toList();
 
         return new UserResponse(user.getId(), user.getUsername(), cars);

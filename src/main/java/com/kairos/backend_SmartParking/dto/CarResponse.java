@@ -4,6 +4,7 @@ import java.util.UUID;
 
 public record CarResponse(
         UUID id,
-        String modele
+        String modele,
+        String username
 ) {}
 

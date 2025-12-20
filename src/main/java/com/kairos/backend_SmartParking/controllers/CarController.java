@@ -1,6 +1,7 @@
 package com.kairos.backend_SmartParking.controllers;
 
 import com.kairos.backend_SmartParking.dto.CarRequest;
+import com.kairos.backend_SmartParking.dto.CarResponse;
 import com.kairos.backend_SmartParking.entities.Cars;
 import com.kairos.backend_SmartParking.services.CarService;
 import org.springframework.http.ResponseEntity;
@@ -20,22 +21,22 @@ public class CarController {
     }
 
     @PostMapping
-    public ResponseEntity<Cars> createCar(@RequestBody CarRequest car) {
+    public ResponseEntity<CarResponse> createCar(@RequestBody CarRequest car) {
         return ResponseEntity.ok(carService.createCar(car));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Cars> getCar(@PathVariable UUID id) {
+    public ResponseEntity<CarResponse> getCar(@PathVariable UUID id) {
         return ResponseEntity.ok(carService.getCar(id));
     }
 
     @GetMapping
-    public ResponseEntity<List<Cars>> getAllCars() {
+    public ResponseEntity<List<CarResponse>> getAllCars() {
         return ResponseEntity.ok(carService.getAllCars());
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Cars> updateCar(@PathVariable UUID id, @RequestBody CarRequest car) {
+    public ResponseEntity<CarResponse> updateCar(@PathVariable UUID id, @RequestBody CarRequest car) {
         return ResponseEntity.ok(carService.updateCar(id, car));
     }
 

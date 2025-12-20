@@ -1,11 +1,11 @@
 package com.kairos.backend_SmartParking.services;
 
-import com.kairos.backend_SmartParking.dto.UserResponse;
+import com.kairos.backend_SmartParking.dto.CarRequest;
+import com.kairos.backend_SmartParking.dto.CarResponse;
 import com.kairos.backend_SmartParking.entities.Cars;
 import com.kairos.backend_SmartParking.entities.Users;
 import com.kairos.backend_SmartParking.repositories.CarRepository;
 import com.kairos.backend_SmartParking.repositories.UserRepository;
-import com.kairos.backend_SmartParking.dto.CarRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,7 +25,7 @@ public class CarService {
     }
 
     // ================= CREATE =================
-    public Cars createCar(CarRequest request) {
+    public CarResponse createCar(CarRequest request) {
         Users user = userRepository.findById(request.getUserId())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
@@ -33,25 +33,32 @@ public class CarService {
         car.setModele(request.getModele());
         car.setUser(user);
 
-        return carRepository.save(car);
+        car = carRepository.save(car);
+
+        return mapToResponse(car);
     }
 
     // ================= READ ONE =================
     @Transactional(readOnly = true)
-    public Cars getCar(UUID id) {
-        return carRepository.findById(id)
+    public CarResponse getCar(UUID id) {
+        Cars car = carRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Car not found"));
+
+        return mapToResponse(car);
     }
 
     // ================= READ ALL =================
     @Transactional(readOnly = true)
-    public List<Cars> getAllCars() {
-        return carRepository.findAll();
+    public List<CarResponse> getAllCars() {
+        return carRepository.findAll().stream()
+                .map(this::mapToResponse)
+                .toList();
     }
 
     // ================= UPDATE =================
-    public Cars updateCar(UUID id, CarRequest request) {
-        Cars car = getCar(id);
+    public CarResponse updateCar(UUID id, CarRequest request) {
+        Cars car = carRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Car not found"));
 
         Users user = userRepository.findById(request.getUserId())
                 .orElseThrow(() -> new RuntimeException("User not found"));
@@ -59,7 +66,9 @@ public class CarService {
         car.setModele(request.getModele());
         car.setUser(user);
 
-        return carRepository.save(car);
+        car = carRepository.save(car);
+
+        return mapToResponse(car);
     }
 
     // ================= DELETE =================
@@ -68,5 +77,14 @@ public class CarService {
             throw new RuntimeException("Car not found");
         }
         carRepository.deleteById(id);
+    }
+
+    // ================= MAPPER =================
+    private CarResponse mapToResponse(Cars car) {
+        return new CarResponse(
+                car.getId(),
+                car.getModele(),
+                car.getUser().getUsername()
+        );
     }
 }
