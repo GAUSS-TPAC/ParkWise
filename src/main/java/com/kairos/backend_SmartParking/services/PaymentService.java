@@ -6,6 +6,8 @@ import com.kairos.backend_SmartParking.enums.PaymentStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class PaymentService {
@@ -17,14 +19,14 @@ public class PaymentService {
         return paymentRepository.save(payment);
     }
 
-    public Payment updateStatus(Long id, PaymentStatus status) {
+    public Payment updateStatus(UUID id, PaymentStatus status) {
         Payment p = paymentRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Paiement introuvable"));
         p.setPaymentStatus(status);
         return paymentRepository.save(p);
     }
 
-    public Payment get(Long id) {
+    public Payment get(UUID id) {
         return paymentRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Paiement introuvable"));
     }
