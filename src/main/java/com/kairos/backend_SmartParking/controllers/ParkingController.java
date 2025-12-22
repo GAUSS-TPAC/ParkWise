@@ -34,14 +34,14 @@ public class ParkingController {
 
     // ================= READ ONE =================
     @GetMapping("/{id}")
-    public Parking getById(@PathVariable UUID id) {
+    public Parking getById(@PathVariable String id) {
         return parkingService.findById(id);
     }
 
     // ================= UPDATE STATUS =================
     @PutMapping("/{id}/status")
     public Parking updateStatus(
-            @PathVariable UUID id,
+            @PathVariable String id,
             @RequestParam ParkingStatus status
     ) {
         return parkingService.changeStatus(id, status);
@@ -49,14 +49,14 @@ public class ParkingController {
 
     //==================  READ STATUS ===============
     @GetMapping("/{id}/status")
-    public ParkingStatus getStatus(@PathVariable UUID id) {
+    public ParkingStatus getStatus(@PathVariable String id) {
         return parkingService.getStatus(id);
     }
 
 
     // ================= DELETE =================
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable UUID id) {
+    public void delete(@PathVariable String id) {
         parkingService.delete(id);
     }
 }

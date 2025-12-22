@@ -40,27 +40,27 @@ public class ParkingService {
     }
 
     // ================= READ ONE =================
-    public Parking findById(UUID id) {
+    public Parking findById(String id) {
         return parkingRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Parking introuvable"));
     }
 
     //================== READ STATUS ===============
-    public ParkingStatus getStatus(UUID id) {
+    public ParkingStatus getStatus(String id) {
         Parking parking = findById(id);
         return parking.getStatus();
     }
 
 
     // ================= UPDATE STATUS =================
-    public Parking changeStatus(UUID id, ParkingStatus status) {
+    public Parking changeStatus(String id, ParkingStatus status) {
         Parking parking = findById(id);
         parking.setStatus(status);
         return parkingRepository.save(parking);
     }
 
     // ================= DELETE =================
-    public void delete(UUID id) {
+    public void delete(String id) {
         parkingRepository.deleteById(id);
     }
 }

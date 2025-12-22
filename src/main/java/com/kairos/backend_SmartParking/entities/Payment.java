@@ -14,7 +14,10 @@ public class Payment {
     private UUID id;
 
     @Column(name = "user_id", nullable = false)
-    private String userId;
+    private UUID userId;
+
+    @Column(nullable = false)
+    private Integer durationHours;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "mode_paiement", nullable = false)
@@ -30,9 +33,10 @@ public class Payment {
     }
 
     // Constructeur complet
-    public Payment(String userId, ModePaiement modePaiement) {
+    public Payment(UUID userId, Integer durationHours, ModePaiement modePaiement) {
         this.id = UUID.randomUUID();
         this.userId = userId;
+        this.durationHours = durationHours;
         this.modePaiement = modePaiement;
     }
 
@@ -41,11 +45,19 @@ public class Payment {
         return id;
     }
 
-    public String getUserId() {
+    public Integer getDurationHours() {
+        return durationHours;
+    }
+
+    public void setDurationHours(Integer amount) {
+        this.durationHours = amount;
+    }
+
+    public UUID getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(UUID userId) {
         this.userId = userId;
     }
 

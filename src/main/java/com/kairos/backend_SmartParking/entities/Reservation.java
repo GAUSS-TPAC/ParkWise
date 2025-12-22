@@ -28,10 +28,17 @@ public class Reservation {
     private Instant comeAt;  // Date/heure de début
 
     @Column(nullable = false)
-    private LocalDateTime goAt; // Date/heure de fin prévue
+    private Integer durationHours; // Durée de la réservation en heures
+
+    @Column(nullable = false)
+    private Instant goAt; // Calculé à partir de comeAt + durationHours
 
     @PrePersist
     public void prePersist() {
         if (comeAt == null) comeAt = Instant.now();
+        if (goAt == null && durationHours != null) {
+            goAt = comeAt.plusSeconds(durationHours * 3600L);
+        }
     }
+
 }
